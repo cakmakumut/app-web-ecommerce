@@ -1,0 +1,5 @@
+homepage: "https://github.com/cakmakumut"
+documentation: "https://github.com/cakmakumut/app-web-ecommerce"
+versions:
+  - sha: 75abca2ee208db81c696e9b0ab263aabd26f0434
+    changeNotes: Initial release.
