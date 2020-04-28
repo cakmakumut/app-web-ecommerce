@@ -488,7 +488,7 @@ if (data.productClick) {
   if (ecommerce.click) { 
     eventName = 'select_item';
       for (i = 0; i < ecommerce.click.length; i++) { 
-      items = {
+      items[i] = {
         'item_name': ecommerce.click.products[i].name,
         'item_id': ecommerce.click.products[i].id,
         'price': ecommerce.click.products[i].price,
@@ -514,7 +514,7 @@ if (data.detail) {
   if (ecommerce.detail) { 
     eventName = 'view_item'; 
       for (i = 0; i < ecommerce.detail.length; i++) { 
-      items = {
+      items[i] = {
         'item_name': ecommerce.detail.products[i].name,
         'item_id': ecommerce.detail.products[i].id,
         'price': ecommerce.detail.products[i].price,
@@ -540,7 +540,7 @@ if (data.addToCart) {
   if (ecommerce.add) { 
     eventName = 'add_to_cart'; 
       for (i = 0; i < ecommerce.add.length; i++) { 
-      items = {
+      items[i] = {
         'item_name': ecommerce.add.products[i].name,
         'item_id': ecommerce.add.products[i].id,
         'price': ecommerce.add.products[i].price,
@@ -566,7 +566,7 @@ if (data.removeFromCart) {
   if (ecommerce.remove) { 
     eventName = 'remove_from_cart'; 
       for (i = 0; i < ecommerce.remove.length; i++) { 
-      items = {
+      items[i] = {
         'item_name': ecommerce.remove.products[i].name,
         'item_id': ecommerce.remove.products[i].id,
         'price': ecommerce.remove.products[i].price,
