@@ -1,9 +1,5 @@
 homepage: "https://github.com/cakmakumut"
 documentation: "https://github.com/cakmakumut/app-web-ecommerce"
 versions:
-  # Latest version
   - sha: 3a8e9898df774411f47a190316e96de77a344600
-  changeNotes: Bug fix for product click, product detail view, add to cart, remove from cart
-  # Older versions
-  - sha: 75abca2ee208db81c696e9b0ab263aabd26f0434
     changeNotes: Initial release.
