@@ -487,7 +487,7 @@ if (data.productImpression) {
 if (data.productClick) {
   if (ecommerce.click) { 
     eventName = 'select_item';
-      for (i = 0; i < ecommerce.click.length; i++) { 
+      for (i = 0; i < ecommerce.click.products.length; i++) { 
       items[i] = {
         'item_name': ecommerce.click.products[i].name,
         'item_id': ecommerce.click.products[i].id,
@@ -513,7 +513,7 @@ if (data.productClick) {
 if (data.detail) {
   if (ecommerce.detail) { 
     eventName = 'view_item'; 
-      for (i = 0; i < ecommerce.detail.length; i++) { 
+      for (i = 0; i < ecommerce.detail.products.length; i++) { 
       items[i] = {
         'item_name': ecommerce.detail.products[i].name,
         'item_id': ecommerce.detail.products[i].id,
@@ -539,7 +539,7 @@ if (data.detail) {
 if (data.addToCart) {
   if (ecommerce.add) { 
     eventName = 'add_to_cart'; 
-      for (i = 0; i < ecommerce.add.length; i++) { 
+      for (i = 0; i < ecommerce.add.products.length; i++) { 
       items[i] = {
         'item_name': ecommerce.add.products[i].name,
         'item_id': ecommerce.add.products[i].id,
@@ -565,7 +565,7 @@ if (data.addToCart) {
 if (data.removeFromCart) {
   if (ecommerce.remove) { 
     eventName = 'remove_from_cart'; 
-      for (i = 0; i < ecommerce.remove.length; i++) { 
+      for (i = 0; i < ecommerce.remove.products.length; i++) { 
       items[i] = {
         'item_name': ecommerce.remove.products[i].name,
         'item_id': ecommerce.remove.products[i].id,
