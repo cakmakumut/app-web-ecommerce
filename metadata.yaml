@@ -2,7 +2,7 @@ homepage: "https://www.linkedin.com/in/umut-cakmak/"
 documentation: "https://github.com/cakmakumut/app-web-ecommerce"
 versions:
   # Latest version
-  - sha:   80107d8ef896d89ea5b9cf623406558fb7d5562c
+  - sha: 80107d8ef896d89ea5b9cf623406558fb7d5562c
     changeNotes: Bug fix
   # Older versions
   - sha: b797c62a85ecebf93b99eac094d016219b6349ff
