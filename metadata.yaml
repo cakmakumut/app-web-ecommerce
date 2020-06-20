@@ -2,9 +2,11 @@ homepage: "https://www.linkedin.com/in/umut-cakmak/"
 documentation: "https://github.com/cakmakumut/app-web-ecommerce"
 versions:
   # Latest version
+  - sha:   80107d8ef896d89ea5b9cf623406558fb7d5562c
+    changeNotes: Bug fix
+  # Older versions
   - sha: b797c62a85ecebf93b99eac094d016219b6349ff
     changeNotes: Added product level custom dimensions and custom metrics
-  # Older versions
   - sha: bfb170bb93092d65f94081c08bdebabf452b2e6b
     changeNotes: Bug fix for product click, product detail view, add to cart and remove from cart events
   - sha: 3a8e9898df774411f47a190316e96de77a344600
