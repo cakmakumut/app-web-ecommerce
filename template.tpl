@@ -460,23 +460,38 @@ let items = [];
 
 if (data.productImpression) {
   if (ecommerce.impressions) {
-    eventName = 'view_item_list'; 
-      for (i = 0; i < ecommerce.impressions.length; i++) {  
+    eventName = 'view_item_list';
+    for (i = 0; i < ecommerce.impressions.length; i++) {
+      const products = ecommerce.impressions[i];
       items[i] = {
-        'item_name': ecommerce.impressions[i].name,
-        'item_id': ecommerce.impressions[i].id,
-        'price': ecommerce.impressions[i].price,
-        'item_brand': ecommerce.impressions[i].brand,
-        'item_category': ecommerce.impressions[i].category.split('/')[0],
-        'item_category_2': ecommerce.impressions[i].category.split('/')[1],
-        'item_category_3': ecommerce.impressions[i].category.split('/')[2],
-        'item_category_4': ecommerce.impressions[i].category.split('/')[3],
-        'item_variant': ecommerce.impressions[i].variant,
-        'item_list_name': ecommerce.impressions[i].list,
+        'item_name': products.name,
+        'item_id': products.id,
+        'price': products.price,
+        'item_brand': products.brand,
+        'item_category': products.category.split('/')[0],
+        'item_category_2': products.category.split('/')[1],
+        'item_category_3': products.category.split('/')[2],
+        'item_category_4': products.category.split('/')[3],
+        'item_variant': products.variant,
+        'item_list_name': products.list,
         'item_list_id': '',
-        'index': ecommerce.impressions[i].position,
+        'index': products.position,
         'quantity': '1'
       };
+      for (var cd in products) {
+        if (products.hasOwnProperty(cd)) {
+          if (cd.match("^dimension[0-9]+")) {
+            items[i][cd] = products[cd];
+          }
+        }
+      }
+      for (var cm in products) {
+        if (products.hasOwnProperty(cm)) {
+          if (cm.match("^metric[0-9]+")) {
+            items[i][cm] = products[cm];
+          }
+        }
+      }
     }
     if (data.paramProductImpression){
       eventParameters = data.productImpressionParams ? makeTableMap(data.productImpressionParams, 'param_name', 'param_value') : undefined;
@@ -485,24 +500,39 @@ if (data.productImpression) {
 }
 
 if (data.productClick) {
-  if (ecommerce.click) { 
+  if (ecommerce.click) {
     eventName = 'select_item';
-      for (i = 0; i < ecommerce.click.products.length; i++) { 
+    for (i = 0; i < ecommerce.click.products.length; i++) {
+      const products = ecommerce.click.products[i];
       items[i] = {
-        'item_name': ecommerce.click.products[i].name,
-        'item_id': ecommerce.click.products[i].id,
-        'price': ecommerce.click.products[i].price,
-        'item_brand': ecommerce.click.products[i].brand,
-        'item_category': ecommerce.click.products[i].category.split('/')[0],
-        'item_category_2': ecommerce.click.products[i].category.split('/')[1],
-        'item_category_3': ecommerce.click.products[i].category.split('/')[2],
-        'item_category_4': ecommerce.click.products[i].category.split('/')[3],
-        'item_variant': ecommerce.click.products[i].variant,
-        'item_list_name': ecommerce.click.products[i].list,
+        'item_name': products.name,
+        'item_id': products.id,
+        'price': products.price,
+        'item_brand': products.brand,
+        'item_category': products.category.split('/')[0],
+        'item_category_2': products.category.split('/')[1],
+        'item_category_3': products.category.split('/')[2],
+        'item_category_4': products.category.split('/')[3],
+        'item_variant': products.variant,
+        'item_list_name': products.list,
         'item_list_id': '',
-        'index': ecommerce.click.products[i].position,
+        'index': products.position,
         'quantity': '1'
-      };  
+      };
+      for (var cd in products) {
+        if (products.hasOwnProperty(cd)) {
+          if (cd.match("^dimension[0-9]+")) {
+            items[i][cd] = products[cd];
+          }
+        }
+      }
+      for (var cm in products) {
+        if (products.hasOwnProperty(cm)) {
+          if (cm.match("^metric[0-9]+")) {
+            items[i][cm] = products[cm];
+          }
+        }
+      }
     }
     if (data.paramProductClick){
       eventParameters = data.productClickParams ? makeTableMap(data.productClickParams, 'param_name', 'param_value') : undefined;
@@ -511,24 +541,39 @@ if (data.productClick) {
 }
 
 if (data.detail) {
-  if (ecommerce.detail) { 
-    eventName = 'view_item'; 
-      for (i = 0; i < ecommerce.detail.products.length; i++) { 
+  if (ecommerce.detail) {
+    eventName = 'view_item';
+    for (i = 0; i < ecommerce.detail.products.length; i++) {
+      const products = ecommerce.detail.products[i];
       items[i] = {
-        'item_name': ecommerce.detail.products[i].name,
-        'item_id': ecommerce.detail.products[i].id,
-        'price': ecommerce.detail.products[i].price,
-        'item_brand': ecommerce.detail.products[i].brand,
-        'item_category': ecommerce.detail.products[i].category.split('/')[0],
-        'item_category_2': ecommerce.detail.products[i].category.split('/')[1],
-        'item_category_3': ecommerce.detail.products[i].category.split('/')[2],
-        'item_category_4': ecommerce.detail.products[i].category.split('/')[3],
-        'item_variant': ecommerce.detail.products[i].variant,
-        'item_list_name': ecommerce.detail.products[i].list,
+        'item_name': products.name,
+        'item_id': products.id,
+        'price': products.price,
+        'item_brand': products.brand,
+        'item_category': products.category.split('/')[0],
+        'item_category_2': products.category.split('/')[1],
+        'item_category_3': products.category.split('/')[2],
+        'item_category_4': products.category.split('/')[3],
+        'item_variant': products.variant,
+        'item_list_name': products.list,
         'item_list_id': '',
-        'index': ecommerce.detail.products[i].position,
+        'index': products.position,
         'quantity': '1'
       }; 
+      for (var cd in products) {
+        if (products.hasOwnProperty(cd)) {
+          if (cd.match("^dimension[0-9]+")) {
+            items[i][cd] = products[cd];
+          }
+        }
+      }
+      for (var cm in products) {
+        if (products.hasOwnProperty(cm)) {
+          if (cm.match("^metric[0-9]+")) {
+            items[i][cm] = products[cm];
+          }
+        }
+      }
     }
     if (data.paramProductDetail){
       eventParameters = data.productDetailParams ? makeTableMap(data.productDetailParams, 'param_name', 'param_value') : undefined;
@@ -537,24 +582,39 @@ if (data.detail) {
 }
 
 if (data.addToCart) {
-  if (ecommerce.add) { 
-    eventName = 'add_to_cart'; 
-      for (i = 0; i < ecommerce.add.products.length; i++) { 
+  if (ecommerce.add) {
+    eventName = 'add_to_cart';
+    for (i = 0; i < ecommerce.add.products.length; i++) {
+      const products = ecommerce.add.products[i];
       items[i] = {
-        'item_name': ecommerce.add.products[i].name,
-        'item_id': ecommerce.add.products[i].id,
-        'price': ecommerce.add.products[i].price,
-        'item_brand': ecommerce.add.products[i].brand,
-        'item_category': ecommerce.add.products[i].category.split('/')[0],
-        'item_category_2': ecommerce.add.products[i].category.split('/')[1],
-        'item_category_3': ecommerce.add.products[i].category.split('/')[2],
-        'item_category_4': ecommerce.add.products[i].category.split('/')[3],
-        'item_variant': ecommerce.add.products[i].variant,
-        'item_list_name': ecommerce.add.products[i].list,
+        'item_name': products.name,
+        'item_id': products.id,
+        'price': products.price,
+        'item_brand': products.brand,
+        'item_category': products.category.split('/')[0],
+        'item_category_2': products.category.split('/')[1],
+        'item_category_3': products.category.split('/')[2],
+        'item_category_4': products.category.split('/')[3],
+        'item_variant': products.variant,
+        'item_list_name': products.list,
         'item_list_id': '',
-        'index': ecommerce.add.products[i].position,
-        'quantity': ecommerce.add.products[i].quantity
+        'index': products.position,
+        'quantity': products.quantity
       };
+      for (var cd in products) {
+        if (products.hasOwnProperty(cd)) {
+          if (cd.match("^dimension[0-9]+")) {
+            items[i][cd] = products[cd];
+          }
+        }
+      }
+      for (var cm in products) {
+        if (products.hasOwnProperty(cm)) {
+          if (cm.match("^metric[0-9]+")) {
+            items[i][cm] = products[cm];
+          }
+        }
+      }
     }
     if (data.paramAddToCart){
       eventParameters = data.addToCartParams ? makeTableMap(data.addToCartParams, 'param_name', 'param_value') : undefined;
@@ -563,24 +623,39 @@ if (data.addToCart) {
 }
 
 if (data.removeFromCart) {
-  if (ecommerce.remove) { 
-    eventName = 'remove_from_cart'; 
-      for (i = 0; i < ecommerce.remove.products.length; i++) { 
+  if (ecommerce.remove) {
+    eventName = 'remove_from_cart';
+    for (i = 0; i < ecommerce.remove.products.length; i++) {
+      const products = ecommerce.remove.products[i];
       items[i] = {
-        'item_name': ecommerce.remove.products[i].name,
-        'item_id': ecommerce.remove.products[i].id,
-        'price': ecommerce.remove.products[i].price,
-        'item_brand': ecommerce.remove.products[i].brand,
-        'item_category': ecommerce.remove.products[i].category.split('/')[0],
-        'item_category_2': ecommerce.remove.products[i].category.split('/')[1],
-        'item_category_3': ecommerce.remove.products[i].category.split('/')[2],
-        'item_category_4': ecommerce.remove.products[i].category.split('/')[3],
-        'item_variant': ecommerce.remove.products[i].variant,
-        'item_list_name': ecommerce.remove.products[i].list,
+        'item_name': products.name,
+        'item_id': products.id,
+        'price': products.price,
+        'item_brand': products.brand,
+        'item_category': products.category.split('/')[0],
+        'item_category_2': products.category.split('/')[1],
+        'item_category_3': products.category.split('/')[2],
+        'item_category_4': products.category.split('/')[3],
+        'item_variant': products.variant,
+        'item_list_name': products.list,
         'item_list_id': '',
-        'index': ecommerce.remove.products[i].position,
-        'quantity': ecommerce.remove.products[i].quantity
+        'index': products.position,
+        'quantity': products.quantity
       };
+      for (var cd in products) {
+        if (products.hasOwnProperty(cd)) {
+          if (cd.match("^dimension[0-9]+")) {
+            items[i][cd] = products[cd];
+          }
+        }
+      }
+      for (var cm in products) {
+        if (products.hasOwnProperty(cm)) {
+          if (cm.match("^metric[0-9]+")) {
+            items[i][cm] = products[cm];
+          }
+        }
+      }
     }
     if (data.paramRemoveFromCart){
       eventParameters = data.removeFromCartParams ? makeTableMap(data.removeFromCartParams, 'param_name', 'param_value') : undefined;
@@ -590,23 +665,38 @@ if (data.removeFromCart) {
 
 if (data.beginCheckout) {
   if (ecommerce.checkout) {
-    eventName = 'begin_checkout'; 
-      for (i = 0; i < ecommerce.checkout.products.length; i++) {  
+    eventName = 'begin_checkout';
+    for (i = 0; i < ecommerce.checkout.products.length; i++) {
+      const products = ecommerce.checkout.products[i];
       items[i] = {
-        'item_name': ecommerce.checkout.products[i].name,
-        'item_id': ecommerce.checkout.products[i].id,
-        'price': ecommerce.checkout.products[i].price,
-        'item_brand': ecommerce.checkout.products[i].brand,
-        'item_category': ecommerce.checkout.products[i].category.split('/')[0],
-        'item_category_2': ecommerce.checkout.products[i].category.split('/')[1],
-        'item_category_3': ecommerce.checkout.products[i].category.split('/')[2],
-        'item_category_4': ecommerce.checkout.products[i].category.split('/')[3],
-        'item_variant': ecommerce.checkout.products[i].variant,
+        'item_name': products.name,
+        'item_id': products.id,
+        'price': products.price,
+        'item_brand': products.brand,
+        'item_category': products.category.split('/')[0],
+        'item_category_2': products.category.split('/')[1],
+        'item_category_3': products.category.split('/')[2],
+        'item_category_4': products.category.split('/')[3],
+        'item_variant': products.variant,
         'item_list_name': '',
         'item_list_id': '',
-        'index': ecommerce.checkout.products[i].position,
-        'quantity': ecommerce.checkout.products[i].quantity
-      };  
+        'index': products.position,
+        'quantity': products.quantity
+      };
+      for (var cd in products) {
+        if (products.hasOwnProperty(cd)) {
+          if (cd.match("^dimension[0-9]+")) {
+            items[i][cd] = products[cd];
+          }
+        }
+      }
+      for (var cm in products) {
+        if (products.hasOwnProperty(cm)) {
+          if (cm.match("^metric[0-9]+")) {
+            items[i][cm] = products[cm];
+          }
+        }
+      }
     }
     if (data.paramCheckout){
       eventParameters = data.checkoutParams ? makeTableMap(data.checkoutParams, 'param_name', 'param_value') : undefined;
@@ -616,23 +706,38 @@ if (data.beginCheckout) {
 
 if (data.purchase) {
   if (ecommerce.purchase) {
-    eventName = 'purchase'; 
-      for (i = 0; i < ecommerce.purchase.products.length; i++) {  
+    eventName = 'purchase';
+    for (i = 0; i < ecommerce.purchase.products.length; i++) {
+      const products = ecommerce.purchase.products[i];
       items[i] = {
-        'item_name': ecommerce.purchase.products[i].name,
-        'item_id': ecommerce.purchase.products[i].id,
-        'price': ecommerce.purchase.products[i].price,
-        'item_brand': ecommerce.purchase.products[i].brand,
-        'item_category': ecommerce.purchase.products[i].category.split('/')[0],
-        'item_category_2': ecommerce.purchase.products[i].category.split('/')[1],
-        'item_category_3': ecommerce.purchase.products[i].category.split('/')[2],
-        'item_category_4': ecommerce.purchase.products[i].category.split('/')[3],
-        'item_variant': ecommerce.purchase.products[i].variant,
+        'item_name': products.name,
+        'item_id': products.id,
+        'price': products.price,
+        'item_brand': products.brand,
+        'item_category': products.category.split('/')[0],
+        'item_category_2': products.category.split('/')[1],
+        'item_category_3': products.category.split('/')[2],
+        'item_category_4': products.category.split('/')[3],
+        'item_variant': products.variant,
         'item_list_name': '',
         'item_list_id': '',
-        'index': ecommerce.purchase.products[i].position,
-        'quantity': ecommerce.purchase.products[i].quantity
-      };  
+        'index': products.position,
+        'quantity': products.quantity
+      };
+      for (var cd in products) {
+        if (products.hasOwnProperty(cd)) {
+          if (cd.match("^dimension[0-9]+")) {
+            items[i][cd] = products[cd];
+          }
+        }
+      }
+      for (var cm in products) {
+        if (products.hasOwnProperty(cm)) {
+          if (cm.match("^metric[0-9]+")) {
+            items[i][cm] = products[cm];
+          }
+        }
+      }
     }
     if (data.paramPurchase){
       eventParameters = data.purchaseParams ? makeTableMap(data.purchaseParams, 'param_name', 'param_value') : undefined;
@@ -642,14 +747,29 @@ if (data.purchase) {
 
 if (data.promotionImpression) {
   if (ecommerce.promoView) {
-    eventName = 'view_promotion'; 
-      for (i = 0; i < ecommerce.promoView.promotions.length; i++) {  
+    eventName = 'view_promotion';
+    for (i = 0; i < ecommerce.promoView.promotions.length; i++) {
+      const promotions = ecommerce.promoView.promotions[i];
       items[i] = {
-        'promotion_name': ecommerce.promoView.promotions[i].name,
-        'promotion_id': ecommerce.promoView.promotions[i].id,
-        'creative_name': ecommerce.promoView.promotions[i].creative,
-        'creative_slot': ecommerce.promoView.promotions[i].position
-      };  
+        'promotion_name': promotions.name,
+        'promotion_id': promotions.id,
+        'creative_name': promotions.creative,
+        'creative_slot': promotions.position
+      };
+      for (var cd in promotions) {
+        if (promotions.hasOwnProperty(cd)) {
+          if (cd.match("^dimension[0-9]+")) {
+            items[i][cd] = promotions[cd];
+          }
+        }
+      }
+      for (var cm in promotions) {
+        if (promotions.hasOwnProperty(cm)) {
+          if (cm.match("^metric[0-9]+")) {
+            items[i][cm] = promotions[cm];
+          }
+        }
+      }
     }
     if (data.paramPromotionImpression){
       eventParameters = data.promotionImpressionParams ? makeTableMap(data.promotionImpressionParams, 'param_name', 'param_value') : undefined;
@@ -659,14 +779,29 @@ if (data.promotionImpression) {
 
 if (data.promotionClick) {
   if (ecommerce.promoClick) {
-    eventName = 'select_promotion'; 
-      for (i = 0; i < ecommerce.promoClick.promotions.length; i++) {  
+    eventName = 'select_promotion';
+    for (i = 0; i < ecommerce.promoClick.promotions.length; i++) {
+      const promotions = ecommerce.promoClick.promotions[i];
       items[i] = {
         'promotion_name': ecommerce.promoClick.promotions[i].name,
         'promotion_id': ecommerce.promoClick.promotions[i].id,
         'creative_name': ecommerce.promoClick.promotions[i].creative,
         'creative_slot': ecommerce.promoClick.promotions[i].position
-      };  
+      };
+      for (var cd in promotions) {
+        if (promotions.hasOwnProperty(cd)) {
+          if (cd.match("^dimension[0-9]+")) {
+            items[i][cd] = promotions[cd];
+          }
+        }
+      }
+      for (var cm in promotions) {
+        if (promotions.hasOwnProperty(cm)) {
+          if (cm.match("^metric[0-9]+")) {
+            items[i][cm] = promotions[cm];
+          }
+        }
+      }
     }
     if (data.paramPromotionClick){
       eventParameters = data.promotionClickParams ? makeTableMap(data.promotionClickParams, 'param_name', 'param_value') : undefined;
