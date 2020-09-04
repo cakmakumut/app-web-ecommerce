@@ -457,6 +457,7 @@ const ecommerce = copyFromDataLayer('ecommerce', 2);
 
 let eventName, i, eventParameters;
 let items = [];
+let ecomm;
 
 if (data.productImpression) {
   if (ecommerce.impressions) {
@@ -496,6 +497,11 @@ if (data.productImpression) {
     if (data.paramProductImpression){
       eventParameters = data.productImpressionParams ? makeTableMap(data.productImpressionParams, 'param_name', 'param_value') : undefined;
     }
+    ecomm = {
+      'ecommerce': {
+        'items': items
+      }
+    };
   }
 }
 
@@ -537,6 +543,11 @@ if (data.productClick) {
     if (data.paramProductClick){
       eventParameters = data.productClickParams ? makeTableMap(data.productClickParams, 'param_name', 'param_value') : undefined;
     }
+    ecomm = {
+      'ecommerce': {
+        'items': items
+      }
+    };
   }
 }
 
@@ -578,6 +589,11 @@ if (data.detail) {
     if (data.paramProductDetail){
       eventParameters = data.productDetailParams ? makeTableMap(data.productDetailParams, 'param_name', 'param_value') : undefined;
     }
+    ecomm = {
+      'ecommerce': {
+        'items': items
+      }
+    };
   }
 }
 
@@ -619,6 +635,11 @@ if (data.addToCart) {
     if (data.paramAddToCart){
       eventParameters = data.addToCartParams ? makeTableMap(data.addToCartParams, 'param_name', 'param_value') : undefined;
     }
+    ecomm = {
+      'ecommerce': {
+        'items': items
+      }
+    };
   }
 }
 
@@ -660,6 +681,11 @@ if (data.removeFromCart) {
     if (data.paramRemoveFromCart){
       eventParameters = data.removeFromCartParams ? makeTableMap(data.removeFromCartParams, 'param_name', 'param_value') : undefined;
     }
+    ecomm = {
+      'ecommerce': {
+        'items': items
+      }
+    };
   }
 }
 
@@ -701,12 +727,18 @@ if (data.beginCheckout) {
     if (data.paramCheckout){
       eventParameters = data.checkoutParams ? makeTableMap(data.checkoutParams, 'param_name', 'param_value') : undefined;
     }
+    ecomm = {
+      'ecommerce': {
+        'items': items
+      }
+    };
   }
 }
 
 if (data.purchase) {
   if (ecommerce.purchase) {
     eventName = 'purchase';
+    const transactionData = ecommerce.purchase.actionField;
     for (i = 0; i < ecommerce.purchase.products.length; i++) {
       const products = ecommerce.purchase.products[i];
       items[i] = {
@@ -742,6 +774,17 @@ if (data.purchase) {
     if (data.paramPurchase){
       eventParameters = data.purchaseParams ? makeTableMap(data.purchaseParams, 'param_name', 'param_value') : undefined;
     }
+    ecomm = {
+      'ecommerce': {
+        'purchase': {
+          'transaction_id': transactionData.id,
+          'revenue': transactionData.revenue,
+          'tax': transactionData.tax,
+          'shipping': transactionData.shipping,
+          'items': items
+        }
+      }
+    };
   }
 }
 
@@ -774,6 +817,11 @@ if (data.promotionImpression) {
     if (data.paramPromotionImpression){
       eventParameters = data.promotionImpressionParams ? makeTableMap(data.promotionImpressionParams, 'param_name', 'param_value') : undefined;
     }
+    ecomm = {
+      'ecommerce': {
+        'items': items
+      }
+    };
   }
 }
 
@@ -806,14 +854,13 @@ if (data.promotionClick) {
     if (data.paramPromotionClick){
       eventParameters = data.promotionClickParams ? makeTableMap(data.promotionClickParams, 'param_name', 'param_value') : undefined;
     }
+    ecomm = {
+      'ecommerce': {
+        'items': items
+      }
+    };
   }
 }
-
-const ecomm = {
-  'ecommerce': {
-    'items': items
-  }
-};
 
 const event = {'event': eventName};
 
