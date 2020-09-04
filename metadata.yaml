@@ -2,9 +2,11 @@ homepage: "https://www.linkedin.com/in/umut-cakmak/"
 documentation: "https://github.com/cakmakumut/app-web-ecommerce"
 versions:
   # Latest version
+  - sha: 510ff503fa7981853d0ece4e9f5c85a6b2a7c0f8
+    changeNotes: Updated purchase event for app + web property ecommerce reporting
+  # Older versions
   - sha: 17c402a5da09457decf57005fb4015626ed9f4ec
     changeNotes: Added product level custom dimensions and custom metrics
-  # Older versions
   - sha: 80107d8ef896d89ea5b9cf623406558fb7d5562c
     changeNotes: Bug fix
   - sha: b797c62a85ecebf93b99eac094d016219b6349ff
