@@ -778,7 +778,7 @@ if (data.purchase) {
       'ecommerce': {
         'purchase': {
           'transaction_id': transactionData.id,
-          'revenue': transactionData.revenue,
+          'value': transactionData.revenue,
           'tax': transactionData.tax,
           'shipping': transactionData.shipping,
           'items': items
