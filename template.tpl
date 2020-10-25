@@ -453,7 +453,7 @@ const merge = function() {
   return obj;
 };
 
-const ecommerce = copyFromDataLayer('ecommerce', 2);
+const ecommerce = copyFromDataLayer('ecommerce', 1);
 
 let eventName, i, eventParameters;
 let items = [];
@@ -778,6 +778,7 @@ if (data.purchase) {
       'ecommerce': {
         'purchase': {
           'transaction_id': transactionData.id,
+          'value': transactionData.revenue,
           'revenue': transactionData.revenue,
           'tax': transactionData.tax,
           'shipping': transactionData.shipping,
