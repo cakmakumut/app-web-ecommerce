@@ -13,7 +13,7 @@ ___INFO___
   "id": "cvt_temp_public_id",
   "version": 1,
   "securityGroups": [],
-  "displayName": "App + Web Ecommerce",
+  "displayName": "GA4 Ecommerce",
   "categories": [
     "ANALYTICS",
     "CONVERSIONS"
@@ -776,14 +776,12 @@ if (data.purchase) {
     }
     ecomm = {
       'ecommerce': {
-        'purchase': {
-          'transaction_id': transactionData.id,
-          'value': transactionData.revenue,
-          'revenue': transactionData.revenue,
-          'tax': transactionData.tax,
-          'shipping': transactionData.shipping,
-          'items': items
-        }
+        'transaction_id': transactionData.id,
+        'value': transactionData.revenue,
+        'tax': transactionData.tax,
+        'shipping': transactionData.shipping,
+        'coupon': transactionData.coupon,
+        'items': items
       }
     };
   }
