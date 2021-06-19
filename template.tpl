@@ -865,7 +865,14 @@ const event = {'event': eventName};
 
 const dataLayer = merge(event, ecomm, eventParameters);
 
+const clear_items = {
+  'ecommerce': {
+    'items': null
+  }
+};
+
 if (queryPermission('access_globals', 'readwrite', 'dataLayer')) {
+  dataLayerPush(clear_items);
   dataLayerPush(dataLayer);
 }
 
