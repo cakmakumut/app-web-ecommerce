@@ -1,10 +1,13 @@
 homepage: "https://www.linkedin.com/in/umut-cakmak/"
 documentation: "https://github.com/cakmakumut/app-web-ecommerce"
 versions:
+
   # Latest version
+  - sha: 27e31268ad817f3e887e9ec43437df0767709efd
+    changeNotes: Changed purchase event parameters. Clear ecommerce.items object. Template name change. 
+  # Older versions
   - sha: db71c6d5e6ca8a2a087b0a6443bd95bd25444f1a
     changeNotes: Changed purchase event parameters.
-  # Older versions
   - sha: 16fc056151e69c49a11f397a1461497ef47eae34
     changeNotes: Bug fix
   - sha: 510ff503fa7981853d0ece4e9f5c85a6b2a7c0f8
