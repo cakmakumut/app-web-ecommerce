@@ -3,9 +3,11 @@ documentation: "https://github.com/cakmakumut/app-web-ecommerce"
 versions:
 
   # Latest version
+  - sha: b6014f6f54383ac58ce4f0a2056f00e0aac61cd0
+    changeNotes: tests added
+  # Older versions
   - sha: 27e31268ad817f3e887e9ec43437df0767709efd
     changeNotes: Changed purchase event parameters. Clear ecommerce.items object. Template name change. 
-  # Older versions
   - sha: db71c6d5e6ca8a2a087b0a6443bd95bd25444f1a
     changeNotes: Changed purchase event parameters.
   - sha: 16fc056151e69c49a11f397a1461497ef47eae34
