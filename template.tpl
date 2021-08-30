@@ -974,7 +974,161 @@ ___WEB_PERMISSIONS___
 
 ___TESTS___
 
-scenarios: []
+scenarios:
+- name: detail
+  code: |-
+    mock('copyFromDataLayer', key => {
+      if (key === 'ecommerce') return {
+        currencyCode: 'EUR',
+        detail: {
+          products: mockProduct.gtm.products
+        }
+      };
+    });
+
+    // Call runCode to run the template's code.
+    runCode(mockProduct);
+
+    // Verify that the tag finished successfully.
+    assertApi('gtmOnSuccess').wasCalled();
+- name: add
+  code: |-
+    mock('copyFromDataLayer', key => {
+      if (key === 'ecommerce') return {
+        currencyCode: 'EUR',
+        add: {
+          products: mockProduct.gtm.products
+        }
+      };
+    });
+
+    // Call runCode to run the template's code.
+    runCode(mockProduct);
+
+    // Verify that the tag finished successfully.
+    assertApi('gtmOnSuccess').wasCalled();
+- name: remove
+  code: |-
+    mock('copyFromDataLayer', key => {
+      if (key === 'ecommerce') return {
+        currencyCode: 'EUR',
+        remove: {
+          products: mockProduct.gtm.products
+        }
+      };
+    });
+
+    // Call runCode to run the template's code.
+    runCode(mockProduct);
+
+    // Verify that the tag finished successfully.
+    assertApi('gtmOnSuccess').wasCalled();
+- name: click
+  code: |-
+    mock('copyFromDataLayer', key => {
+      if (key === 'ecommerce') return {
+        currencyCode: 'EUR',
+        detail: {
+          products: mockProduct.gtm.products
+        }
+      };
+    });
+
+    // Call runCode to run the template's code.
+    runCode(mockProduct);
+
+    // Verify that the tag finished successfully.
+    assertApi('gtmOnSuccess').wasCalled();
+- name: impression
+  code: |-
+    mock('copyFromDataLayer', key => {
+      if (key === 'ecommerce') return {
+        currencyCode: 'EUR',
+        impression: mockProduct.gtm.products
+      };
+    });
+
+    // Call runCode to run the template's code.
+    runCode(mockProduct);
+
+    // Verify that the tag finished successfully.
+    assertApi('gtmOnSuccess').wasCalled();
+- name: checkout
+  code: |-
+    mock('copyFromDataLayer', key => {
+      if (key === 'ecommerce') return {
+        currencyCode: 'EUR',
+        checkout: {
+          actionField: {
+            step: 1
+          },
+          products: mockProduct.gtm.products
+        }
+      };
+    });
+
+    // Call runCode to run the template's code.
+    runCode(mockProduct);
+
+    // Verify that the tag finished successfully.
+    assertApi('gtmOnSuccess').wasCalled();
+- name: purchase
+  code: |-
+    mock('copyFromDataLayer', key => {
+      if (key === 'ecommerce') return {
+        currencyCode: 'EUR',
+        checkout: {
+          actionField: mockPurchase.gtm.actionField,
+          products: mockProduct.gtm.products
+        }
+      };
+    });
+
+    // Call runCode to run the template's code.
+    runCode(mockProduct);
+
+    // Verify that the tag finished successfully.
+    assertApi('gtmOnSuccess').wasCalled();
+- name: promotion impression
+  code: |-
+    mock('copyFromDataLayer', key => {
+      if (key === 'ecommerce') return {
+        promoView: {
+          promotions: mockPromotion.gtm.promotions
+        }
+      };
+    });
+
+    // Call runCode to run the template's code.
+    runCode(mockProduct);
+
+    // Verify that the tag finished successfully.
+    assertApi('gtmOnSuccess').wasCalled();
+- name: promotion click
+  code: |-
+    mock('copyFromDataLayer', key => {
+      if (key === 'ecommerce') return {
+        promoClick: {
+          promotions: mockPromotion.gtm.promotions
+        }
+      };
+    });
+
+    // Call runCode to run the template's code.
+    runCode(mockProduct);
+
+    // Verify that the tag finished successfully.
+    assertApi('gtmOnSuccess').wasCalled();
+setup: "const mockProduct = {\n  gtm: {  \n    products: [{\n      id: 'id1',\n  \
+  \    name: 'name1',\n      category: 'category1',\n      price: '1.00',\n      quantity:\
+  \ 1\n    },{\n      id: 'id2',\n      name: 'name2',\n      category: 'category2',\n\
+  \      price: '2.00',\n      quantity: 2\n    }]\n  }\n};\n\nconst mockPurchase\
+  \ = {\n  gtm: {  \n    actionField: {\n      id: 'T12345',\n      revenue: '100.00',\n\
+  \      shipping: '10.00',\n      tax: '10.00',\n      coupon: 'summer'\n    }\n\
+  \  }\n};\n\nconst mockPromotion = {\n  gtm: {  \n    promotions: [{\n      id: 'id1',\n\
+  \      name: 'name1',\n      creative: 'creative1',\n      position: '1',\n    },{\n\
+  \      id: 'id2',\n      name: 'name2',\n      creative: 'creative2',\n      position:\
+  \ '2',\n    }]\n  }\n};"
 
 
 ___NOTES___
